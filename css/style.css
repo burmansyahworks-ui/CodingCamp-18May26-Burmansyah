@@ -1,0 +1,717 @@
+/* Base reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #e0e0e0;
+  background-color: #0a0a0a;
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* ===========================
+   Header
+   =========================== */
+.dashboard-header {
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: #666;
+  letter-spacing: 2px;
+}
+
+.header-version {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: #444;
+  border: 1px solid #333;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.header-right {
+  display: flex;
+  gap: 8px;
+}
+
+.header-btn {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.header-btn:hover {
+  background: #222;
+  color: #ccc;
+  border-color: #555;
+}
+
+/* ===========================
+   Dashboard Grid Layout
+   =========================== */
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+/* Widget placement */
+.widget-time {
+  grid-column: 2 / 4;
+  grid-row: 1;
+}
+
+.widget-tasks {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.widget-timer {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.widget-links {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* ===========================
+   Widget Base
+   =========================== */
+.widget {
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===========================
+   TIME WIDGET - Yellow/Orange
+   =========================== */
+.widget-time {
+  background-color: #e8a838;
+  color: #1a1a1a;
+}
+
+.widget-time .greeting-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #5a4010;
+  margin-bottom: 8px;
+}
+
+.widget-time .greeting-time {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.widget-time .greeting-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: #5a4010;
+  margin-bottom: 12px;
+}
+
+.widget-time .greeting-message {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 1px;
+}
+
+.widget-time .time-corner {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(0,0,0,0.1);
+}
+
+.widget-time .time-tag {
+  position: absolute;
+  bottom: 16px;
+  right: 24px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: #5a4010;
+  letter-spacing: 2px;
+}
+
+/* ===========================
+   TASKS WIDGET - Red/Coral
+   =========================== */
+.widget-tasks {
+  background-color: #c44040;
+  color: #fff;
+}
+
+.widget-tasks .tasks-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 4px;
+}
+
+.widget-tasks .tasks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.widget-tasks .tasks-header h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.widget-tasks .todo-sort-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  background: rgba(0,0,0,0.2);
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.widget-tasks .todo-sort-btn:hover {
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+}
+
+.widget-tasks .todo-form {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.widget-tasks .todo-input {
+  flex: 1;
+  min-width: 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  padding: 8px 10px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  color: #fff;
+}
+
+.widget-tasks .todo-input::placeholder { color: rgba(255,255,255,0.4); }
+.widget-tasks .todo-input:focus { outline: 2px solid rgba(255,255,255,0.5); }
+
+.widget-tasks .todo-add-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.widget-tasks .todo-add-btn:hover { background: rgba(0,0,0,0.5); }
+
+.widget-tasks .todo-tasks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.widget-tasks .todo-task {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.widget-tasks .todo-task:last-child { border-bottom: none; }
+
+.widget-tasks .todo-checkbox {
+  width: 14px;
+  height: 14px;
+  accent-color: #fff;
+  cursor: pointer;
+}
+
+.widget-tasks .todo-task-text {
+  flex: 1;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: #fff;
+  word-break: break-word;
+}
+
+.widget-tasks .todo-task.completed .todo-task-text {
+  text-decoration: line-through;
+  color: rgba(255,255,255,0.4);
+}
+
+.widget-tasks .todo-delete-btn {
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  background: rgba(0,0,0,0.3);
+  color: rgba(255,255,255,0.6);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.widget-tasks .todo-delete-btn:hover { background: rgba(0,0,0,0.5); color: #fff; }
+
+.widget-tasks .todo-duplicate-error {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: #ffcdd2;
+  margin-top: 4px;
+  padding: 4px 8px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+.widget-tasks .corner-kanji {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(0,0,0,0.25);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ===========================
+   FOCUS TIMER - Green
+   =========================== */
+.widget-timer {
+  background-color: #6b8f71;
+  color: #1a1a1a;
+}
+
+.widget-timer .timer-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.widget-timer .timer-display {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 16px;
+  letter-spacing: 3px;
+  line-height: 1;
+  border: 2px solid rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(255,255,255,0.1);
+}
+
+.widget-timer .timer-controls {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.widget-timer .timer-controls button {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  padding: 6px 14px;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.15s;
+}
+
+.widget-timer .btn-start {
+  background: #1a1a1a;
+  color: #6b8f71;
+}
+
+.widget-timer .btn-start:hover { background: #000; }
+
+.widget-timer .btn-stop {
+  background: rgba(0,0,0,0.1);
+  color: #1a1a1a;
+}
+
+.widget-timer .btn-stop:hover { background: rgba(0,0,0,0.2); }
+
+.widget-timer .btn-reset {
+  background: rgba(0,0,0,0.1);
+  color: #1a1a1a;
+}
+
+.widget-timer .btn-reset:hover { background: rgba(0,0,0,0.2); }
+
+.widget-timer .timer-notification {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 12px;
+  padding: 8px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.widget-timer .timer-dot {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 3px solid rgba(0,0,0,0.3);
+}
+
+/* ===========================
+   QUICK LINKS - Gray
+   =========================== */
+.widget-links {
+  background-color: #c8c8c8;
+  color: #1a1a1a;
+}
+
+.widget-links .links-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.widget-links .links-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.widget-links .links-big-number {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(0,0,0,0.06);
+  line-height: 1;
+}
+
+.widget-links .quick-links-form {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.widget-links .quick-links-label-input,
+.widget-links .quick-links-url-input {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  padding: 6px 10px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  background: #fff;
+  color: #1a1a1a;
+}
+
+.widget-links .quick-links-label-input { flex: 1; min-width: 80px; }
+.widget-links .quick-links-url-input { flex: 2; min-width: 100px; }
+
+.widget-links .quick-links-label-input:focus,
+.widget-links .quick-links-url-input:focus {
+  outline: 2px solid #1a1a1a;
+}
+
+.widget-links .quick-links-form button[type="submit"] {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  padding: 6px 12px;
+  background: #1a1a1a;
+  color: #c8c8c8;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.widget-links .quick-links-form button[type="submit"]:hover { background: #333; }
+
+.widget-links .quick-links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.widget-links .quick-link-item {
+  position: relative;
+  display: inline-flex;
+}
+
+.widget-links .quick-link-button {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  padding: 6px 14px;
+  background: #1a1a1a;
+  color: #c8c8c8;
+  text-decoration: none;
+  border-radius: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: background 0.15s;
+}
+
+.widget-links .quick-link-button:hover { background: #333; }
+
+.widget-links .quick-link-delete {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #fff;
+  border: 2px solid #c8c8c8;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.widget-links .quick-link-delete:hover { background: #dc2626; }
+
+.widget-links .quick-links-error {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: #b91c1c;
+  margin-top: 6px;
+}
+
+/* ===========================
+   Settings Panel
+   =========================== */
+.settings-panel {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-content {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 30px;
+  width: 90%;
+  max-width: 380px;
+}
+
+.settings-content h2 {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.settings-group {
+  margin-bottom: 16px;
+}
+
+.settings-group label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: #888;
+  margin-bottom: 6px;
+  letter-spacing: 2px;
+}
+
+.settings-content input {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #e0e0e0;
+}
+
+.settings-content input:focus { outline: 2px solid #e8a838; }
+
+.settings-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.btn-save {
+  font-family: 'Space Mono', monospace;
+  padding: 8px 20px;
+  background: #e8a838;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.btn-save:hover { background: #d4952e; }
+
+.btn-close {
+  font-family: 'Space Mono', monospace;
+  padding: 8px 20px;
+  background: #333;
+  color: #888;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.btn-close:hover { background: #444; color: #ccc; }
+
+/* ===========================
+   Dark Mode (already dark by default, light mode toggle)
+   =========================== */
+body.light-mode {
+  background-color: #f0f0f0;
+  color: #1a1a1a;
+}
+
+body.light-mode .header-btn {
+  background: #e0e0e0;
+  border-color: #ccc;
+  color: #555;
+}
+
+body.light-mode .header-tag,
+body.light-mode .header-version {
+  color: #888;
+}
+
+body.light-mode .settings-content {
+  background: #fff;
+  border-color: #ddd;
+}
+
+body.light-mode .settings-content h2 { color: #1a1a1a; }
+body.light-mode .settings-group label { color: #666; }
+body.light-mode .settings-content input {
+  background: #f5f5f5;
+  border-color: #ddd;
+  color: #1a1a1a;
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .widget-time { grid-column: 1; grid-row: auto; }
+  .widget-tasks { grid-column: 1; grid-row: auto; }
+  .widget-timer { grid-column: 1; grid-row: auto; }
+  .widget-links { grid-column: 1; grid-row: auto; }
+
+  .widget-time .greeting-time { font-size: 2.5rem; }
+  .widget-timer .timer-display { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+  body { padding: 12px; }
+  .widget { padding: 16px; }
+  .widget-time .greeting-time { font-size: 2rem; }
+  .widget-timer .timer-display { font-size: 1.8rem; }
+
+  .widget-tasks .todo-form { flex-direction: column; }
+  .widget-links .quick-links-form { flex-direction: column; }
+  .widget-links .quick-links-label-input,
+  .widget-links .quick-links-url-input { min-width: unset; }
+}
